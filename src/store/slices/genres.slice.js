@@ -19,28 +19,28 @@ export const genresSlice = createSlice({
 
 export const getGenresThunk = () => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        const res = await axios.get('/genres');
+        const res = await axios.get('/api/v1/genres');
         dispatch(setGenres(res.data));
     }))
 }
 
 export const addGenreThunk = (name) => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        const res = await axios.post('/genres', {name});
+        const res = await axios.post('/api/v1/genres', {name});
         dispatch(addGenre(res.data));
     }))
 }
 
 export const deleteGenreThunk = id => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        await axios.delete(`/genres/${id}`)
+        await axios.delete(`/api/v1/genres/${id}`)
         dispatch(deleteGenre(id))
     }))
 }
 
 export const updateGenreThunk = (id, name) => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        const res = await axios.put(`/genres/${id}`, {name})
+        const res = await axios.put(`/api/v1/genres/${id}`, {name})
         dispatch(updateGenre({id, genre: res.data}));
     }))
 }

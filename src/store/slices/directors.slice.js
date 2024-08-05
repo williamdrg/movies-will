@@ -19,28 +19,28 @@ export const directorsSlice = createSlice({
 
 export const getDirectorsThunk = () => (dispatch) => {
     dispatch(genericRequestThunk(async () => {
-        const res = await axios.get('/directors')
+        const res = await axios.get('/api/v1/directors')
         dispatch(setDirectors(res.data));
     }));
 }
 
 export const addDirectorThunk = director => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        const res = await axios.post('/directors', director);
+        const res = await axios.post('/api/v1/directors', director);
         dispatch(addDirector(res.data));
     }, "Director added successfully"))
 }
 
 export const deleteDirectorThunk = id => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        await axios.delete(`/directors/${id}`)
+        await axios.delete(`/api/v1/directors/${id}`)
         dispatch(deleteDirector(id));
     }, "Director deleted successfully"))
 }
 
 export const updateDirectorThunk = (id, directorParams) => dispatch => {
     dispatch(genericRequestThunk(async () => {
-        const {data: director} = await axios.put(`/directors/${id}`, directorParams)
+        const {data: director} = await axios.put(`/api/v1/directors/${id}`, directorParams)
         dispatch(updateDirector({id, director}))
     }, "Director updated succesfully"));
 }
