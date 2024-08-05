@@ -27,7 +27,7 @@ export const getMoviesThunk = () => (dispatch) => {
 
 export const addMovieThunk = movie => dispatch => {
     return dispatch(genericRequestThunk(async () => {
-        const { data } = await axios.post('/movies', movie);
+        const { data } = await axios.post('/api/v1/movies', movie);
         const { data: genres } = await axios.post(`/api/v1/movies/${data.id}/genres`, movie.genres);
         const { data: directors } = await axios.post(`/api/v1/movies/${data.id}/directors`, movie.directors);
         const { data: actors } = await axios.post(`/api/v1/movies/${data.id}/actors`, movie.actors);
